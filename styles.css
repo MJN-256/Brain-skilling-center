@@ -4,15 +4,16 @@
 
 :root {
     color-scheme: light;
-    --green-950: #103b2b;
-    --green-900: #145638;
-    --green-800: #176b45;
-    --green-700: #218253;
-    --green-100: #e8f3eb;
-    --green-50: #f4f8f3;
-    --gold: #e8b650;
-    --ink: #1d2b24;
-    --muted: #627168;
+    --green-950: #26380d;
+    --green-900: #38540f;
+    --green-800: #4f7614;
+    --green-700: #668f17;
+    --green-100: #edf6d4;
+    --green-50: #f8fbe9;
+    --lime: #c5e84b;
+    --gold: #d7eb61;
+    --ink: #253018;
+    --muted: #657052;
     --white: #ffffff;
     --shadow: 0 16px 42px rgba(16, 59, 43, 0.1);
 }
@@ -25,7 +26,7 @@ html {
 body {
     margin: 0;
     color: var(--ink);
-    background: linear-gradient(145deg, #f3f8ff 0%, #fff8e8 48%, #eff8f1 100%);
+    background: linear-gradient(145deg, #f8fbe9 0%, #fffce8 48%, #edf6d4 100%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.65;
 }
@@ -64,6 +65,7 @@ a {
     z-index: 100;
     top: 0;
     background: rgba(255, 255, 255, 0.96);
+    border-bottom: 3px solid var(--lime);
     box-shadow: 0 2px 16px rgba(16, 59, 43, 0.08);
 }
 
@@ -99,6 +101,7 @@ a {
     border-radius: 12px;
     color: var(--white);
     background: var(--green-800);
+    box-shadow: 0 0 0 4px rgba(197, 232, 75, 0.28);
     font-size: 1.2rem;
     font-weight: 800;
 }
@@ -194,7 +197,7 @@ a {
     display: block;
     border: 1px solid rgba(255, 255, 255, 0.36);
     border-radius: 50%;
-    background: rgba(190, 230, 195, 0.12);
+    background: rgba(197, 232, 75, 0.16);
     pointer-events: none;
     animation: float-drift 12s ease-in-out infinite alternate;
 }
@@ -219,7 +222,7 @@ a {
     right: 42%;
     width: clamp(16px, 2vw, 26px);
     aspect-ratio: 1;
-    background: rgba(232, 182, 80, 0.42);
+    background: rgba(215, 235, 97, 0.5);
     animation-delay: -7s;
 }
 
@@ -246,7 +249,7 @@ a {
 }
 
 .hero .eyebrow {
-    color: #f2ce7c;
+    color: var(--lime);
 }
 
 .hero h1 {
@@ -294,6 +297,15 @@ a {
     background: var(--white);
 }
 
+.hero .button-light {
+    color: var(--green-950);
+    background: var(--lime);
+}
+
+.hero .button-light:hover {
+    background: #d8f17c;
+}
+
 .button-light:hover {
     background: var(--green-100);
 }
@@ -317,7 +329,7 @@ a {
 
 .hero-location span {
     padding-inline: 8px;
-    color: #f2ce7c;
+    color: var(--lime);
 }
 
 .section {
@@ -325,11 +337,11 @@ a {
 }
 
 .about {
-    background: linear-gradient(135deg, #e9f5ff, #f1f8e9);
+    background: linear-gradient(135deg, #f4f9dc, #fffde9 55%, #eaf4c9);
 }
 
 .programs {
-    background: linear-gradient(135deg, #fff5df, #f9f0ff);
+    background: linear-gradient(135deg, #fff9df, #f0f6d3 55%, #fffde9);
 }
 
 .section-heading {
@@ -360,6 +372,7 @@ a {
 
 .feature-card {
     padding: 27px;
+    border-top: 3px solid var(--lime);
     border: 1px solid #e4ece5;
     border-radius: 16px;
     background: var(--white);
@@ -402,6 +415,7 @@ a {
 
 .program-card {
     padding: 28px;
+    border-top: 3px solid var(--lime);
     border: 1px solid #e5ece5;
     border-radius: 16px;
     background: var(--white);
@@ -436,7 +450,7 @@ a {
 }
 
 .gallery {
-    background: linear-gradient(135deg, #e7f8f2, #eaf2ff);
+    background: linear-gradient(135deg, #eaf4c9, #f8fbe9 55%, #e2efb9);
 }
 
 .photo-carousel {
@@ -663,11 +677,11 @@ a {
 
 .contact {
     color: var(--white);
-    background: linear-gradient(135deg, var(--green-950), var(--green-800));
+    background: linear-gradient(120deg, var(--green-950), var(--green-900) 55%, var(--green-800));
 }
 
 .section-heading-light .eyebrow {
-    color: #f2ce7c;
+    color: var(--lime);
 }
 
 .section-heading-light h2 {
@@ -691,12 +705,13 @@ a {
     align-items: flex-start;
     padding: 25px;
     border: 1px solid rgba(255, 255, 255, 0.19);
+    border-top: 3px solid var(--lime);
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.08);
 }
 
 .contact-icon {
-    color: #f2ce7c;
+    color: var(--lime);
     font-size: 1.7rem;
     line-height: 1;
 }
@@ -711,7 +726,7 @@ a {
 }
 
 .contact-card a:not(.button) {
-    color: #f2ce7c;
+    color: var(--lime);
     font-weight: 700;
     text-decoration: none;
 }
@@ -740,7 +755,7 @@ a {
 .site-footer {
     padding-block: 25px;
     color: rgba(255, 255, 255, 0.78);
-    background: #0b2d21;
+    background: #1d2c0b;
 }
 
 .footer-content {
