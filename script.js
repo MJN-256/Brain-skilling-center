@@ -32,6 +32,85 @@ if (currentYear) {
     currentYear.textContent = String(new Date().getFullYear());
 }
 
+const uniformPhotos = [
+    '20261022_152953.jpg',
+    '20261022_152956.jpg',
+    '20261022_153002.jpg',
+    '20261022_153008.jpg',
+    '20261022_153038.jpg',
+    '20261022_153040.jpg',
+    '20261022_153047.jpg',
+    '20261022_153052.jpg',
+    '20261022_153130.jpg',
+    '20261022_153131.jpg',
+    '20261022_153135.jpg',
+    '20261022_153137.jpg',
+    '20261022_153139.jpg',
+    '20261022_153143.jpg',
+    '20261022_153144.jpg',
+    '20261022_153146.jpg',
+    '20261022_153202.jpg',
+    '20261022_153203.jpg',
+    '20261022_153205.jpg',
+    '20261022_153206.jpg',
+    '20261022_153207.jpg',
+    '20261022_153208.jpg',
+    '20261022_153217.jpg',
+    '20261022_153219.jpg',
+    '20261022_153220.jpg',
+    '20261022_153229.jpg',
+    '20261022_153233.jpg',
+    '20261022_153237.jpg',
+    '20261022_153238.jpg',
+    '20261022_153239.jpg',
+    '20261022_153242.jpg',
+    '20261022_153243.jpg',
+    '20261022_153247.jpg',
+    '20261022_153250.jpg',
+    '20261022_153251.jpg',
+    '20261022_153252.jpg',
+    '20261022_153253.jpg'
+];
+const uniformPhotoPath = filename => `photos%20and%20other/uniform/${filename}`;
+const heroBackgrounds = [
+    document.querySelector('#hero-background-one'),
+    document.querySelector('#hero-background-two')
+];
+const backgroundMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+if (heroBackgrounds.every(image => image instanceof HTMLImageElement) && uniformPhotos.length > 0) {
+    let backgroundIndex = 0;
+    let visibleBackground = 0;
+    let backgroundTimer;
+
+    heroBackgrounds[visibleBackground].src = uniformPhotoPath(uniformPhotos[backgroundIndex]);
+
+    const stopBackgroundSlideshow = () => {
+        window.clearInterval(backgroundTimer);
+        backgroundTimer = undefined;
+    };
+
+    const startBackgroundSlideshow = () => {
+        stopBackgroundSlideshow();
+        if (backgroundMotion.matches || document.hidden) {
+            return;
+        }
+
+        backgroundTimer = window.setInterval(() => {
+            const nextBackground = 1 - visibleBackground;
+            backgroundIndex = (backgroundIndex + 1) % uniformPhotos.length;
+            heroBackgrounds[nextBackground].src = uniformPhotoPath(uniformPhotos[backgroundIndex]);
+            heroBackgrounds[nextBackground].classList.add('is-visible');
+            heroBackgrounds[visibleBackground].classList.remove('is-visible');
+            visibleBackground = nextBackground;
+        }, 2800);
+    };
+
+    document.addEventListener('visibilitychange', startBackgroundSlideshow);
+    backgroundMotion.addEventListener('change', startBackgroundSlideshow);
+    startBackgroundSlideshow();
+}
+
 const photoGrid = document.querySelector('#photo-grid');
 const photoCarousel = document.querySelector('#photo-carousel');
 const photoStatus = document.querySelector('#photo-status');
@@ -46,7 +125,7 @@ const dialogPreviousButton = document.querySelector('#dialog-previous');
 const dialogNextButton = document.querySelector('#dialog-next');
 const photos = photoGrid ? Array.from(photoGrid.querySelectorAll('.photo-card')) : [];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const slideshowDelay = 5000;
+const slideshowDelay = 2200;
 
 if (
     photoGrid && photoCarousel && photoStatus && previousButton && nextButton &&
@@ -61,6 +140,20 @@ if (
     let lastPhotoTrigger;
     let expandedPhotoIndex = 0;
     const photosPerSlide = 4;
+
+    uniformPhotos.forEach((filename, index) => {
+        const figure = document.createElement('figure');
+        const image = document.createElement('img');
+        const caption = document.createElement('figcaption');
+        figure.className = 'photo-card';
+        image.src = uniformPhotoPath(filename);
+        image.alt = 'Student wearing a uniform at Brain Skilling Center';
+        image.loading = 'lazy';
+        caption.textContent = `Uniform photo ${index + 1}`;
+        figure.append(image, caption);
+        photoGrid.append(figure);
+        photos.push(figure);
+    });
 
     photoCarousel.classList.add('is-enhanced');
 

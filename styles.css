@@ -25,7 +25,7 @@ html {
 body {
     margin: 0;
     color: var(--ink);
-    background: var(--white);
+    background: linear-gradient(145deg, #f3f8ff 0%, #fff8e8 48%, #eff8f1 100%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.65;
 }
@@ -63,7 +63,7 @@ a {
     position: sticky;
     z-index: 100;
     top: 0;
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.96);
     box-shadow: 0 2px 16px rgba(16, 59, 43, 0.08);
 }
 
@@ -164,9 +164,28 @@ a {
     overflow: hidden;
     color: var(--white);
     background-color: var(--green-900);
-    background-image: url("photos%20and%20other/IMG_20261014_112401_530.jpg");
+    background-image: linear-gradient(135deg, #145638, #176b45);
     background-position: center 45%;
     background-size: cover;
+}
+
+.hero-background,
+.hero-background img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-background img {
+    object-fit: cover;
+    object-position: center 45%;
+    opacity: 0;
+    transition: opacity 900ms ease-in-out;
+}
+
+.hero-background img.is-visible {
+    opacity: 1;
 }
 
 .floating-shape {
@@ -306,7 +325,11 @@ a {
 }
 
 .about {
-    background: var(--green-50);
+    background: linear-gradient(135deg, #e9f5ff, #f1f8e9);
+}
+
+.programs {
+    background: linear-gradient(135deg, #fff5df, #f9f0ff);
 }
 
 .section-heading {
@@ -413,7 +436,7 @@ a {
 }
 
 .gallery {
-    background: var(--green-50);
+    background: linear-gradient(135deg, #e7f8f2, #eaf2ff);
 }
 
 .photo-carousel {
@@ -790,7 +813,6 @@ a {
 
     .hero {
         min-height: 530px;
-        background-position: 54% center;
     }
 
     .hero-shade {

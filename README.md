@@ -16,9 +16,10 @@ The website includes a map search link and a WhatsApp contact link for enrollmen
 - Home and enrollment calls to action
 - About the center
 - Academic, technical, professional development, and youth empowerment programs
-- Responsive four-photo gallery that automatically rotates through all images in `photos and other` and lets visitors expand individual photos
+- Responsive four-photo gallery that automatically rotates through the center and uniform photos and lets visitors expand individual photos
+- An automatically rotating hero background using the images in `photos and other/uniform`
 - Location, phone, and WhatsApp contact information
 
 ## Run locally
 
-Open `index.html` in a browser. Keep `styles.css`, `script.js`, and the `photos and other` folder alongside it so styles, interactions, and gallery images load correctly.
+Open `index.html` in a browser. Keep `styles.css`, `script.js`, and the `photos and other` folder (including its `uniform` subfolder) alongside it so styles, interactions, and gallery/background images load correctly.
