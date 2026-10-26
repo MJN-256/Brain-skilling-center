@@ -41,7 +41,7 @@ const uniformPhotos = [
     '20261022_153233.jpg',
     '20261022_153237.jpg',
 ];
-const uniformPhotoPath = filename => `photos%20and%20other/uniform/${filename}`;
+const uniformPhotoPath = filename => `photos%20and%20other/optimized/${filename}`;
 const heroBackgrounds = [
     document.querySelector('#hero-background-one'),
     document.querySelector('#hero-background-two')
@@ -52,6 +52,7 @@ if (heroBackgrounds.every(image => image instanceof HTMLImageElement) && uniform
     let backgroundIndex = 0;
     let visibleBackground = 0;
     let backgroundTimer;
+    let isPreloading = false;
 
     heroBackgrounds[visibleBackground].src = uniformPhotoPath(uniformPhotos[backgroundIndex]);
 
@@ -60,20 +61,44 @@ if (heroBackgrounds.every(image => image instanceof HTMLImageElement) && uniform
         backgroundTimer = undefined;
     };
 
+    const preloadNextBackground = () => {
+        if (backgroundMotion.matches || document.hidden || isPreloading) {
+            return;
+        }
+
+        isPreloading = true;
+        const nextPhotoIndex = (backgroundIndex + 1) % uniformPhotos.length;
+        const nextPhotoPath = uniformPhotoPath(uniformPhotos[nextPhotoIndex]);
+        const preloadedPhoto = new Image();
+        preloadedPhoto.onload = () => {
+            isPreloading = false;
+            if (backgroundMotion.matches || document.hidden) {
+                return;
+            }
+
+            const nextBackground = 1 - visibleBackground;
+            heroBackgrounds[nextBackground].src = nextPhotoPath;
+            heroBackgrounds[nextBackground].classList.add('is-visible');
+            heroBackgrounds[visibleBackground].classList.remove('is-visible');
+            visibleBackground = nextBackground;
+            backgroundIndex = nextPhotoIndex;
+            backgroundTimer = window.setTimeout(preloadNextBackground, 2800);
+        };
+        preloadedPhoto.onerror = () => {
+            isPreloading = false;
+            console.error(`Failed to load hero photo: ${nextPhotoPath}`);
+            backgroundIndex = nextPhotoIndex;
+            backgroundTimer = window.setTimeout(preloadNextBackground, 2800);
+        };
+        preloadedPhoto.src = nextPhotoPath;
+    };
+
     const startBackgroundSlideshow = () => {
         stopBackgroundSlideshow();
         if (backgroundMotion.matches || document.hidden) {
             return;
         }
-
-        backgroundTimer = window.setInterval(() => {
-            const nextBackground = 1 - visibleBackground;
-            backgroundIndex = (backgroundIndex + 1) % uniformPhotos.length;
-            heroBackgrounds[nextBackground].src = uniformPhotoPath(uniformPhotos[backgroundIndex]);
-            heroBackgrounds[nextBackground].classList.add('is-visible');
-            heroBackgrounds[visibleBackground].classList.remove('is-visible');
-            visibleBackground = nextBackground;
-        }, 2800);
+        preloadNextBackground();
     };
 
     document.addEventListener('visibilitychange', startBackgroundSlideshow);

@@ -4,13 +4,13 @@
 
 :root {
     color-scheme: light;
-    --green-950: #26380d;
-    --green-900: #38540f;
-    --green-800: #4f7614;
-    --green-700: #668f17;
-    --green-100: #edf6d4;
-    --green-50: #f8fbe9;
-    --lime: #c5e84b;
+    --green-950: #173b1e;
+    --green-900: #20582a;
+    --green-800: #2e7837;
+    --green-700: #438f3b;
+    --green-100: #dff0cf;
+    --green-50: #f2f8e9;
+    --lime: #c6e85a;
     --gold: #d7eb61;
     --ink: #253018;
     --muted: #657052;
@@ -26,7 +26,7 @@ html {
 body {
     margin: 0;
     color: var(--ink);
-    background: linear-gradient(145deg, #f8fbe9 0%, #fffce8 48%, #edf6d4 100%);
+    background: linear-gradient(145deg, #e5f1d9 0%, #f3f8e9 48%, #dceccf 100%);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.65;
 }
@@ -337,11 +337,11 @@ a {
 }
 
 .about {
-    background: linear-gradient(135deg, #f4f9dc, #fffde9 55%, #eaf4c9);
+    background: linear-gradient(135deg, #dff0cf, #eef6dc 55%, #d5eac1);
 }
 
 .programs {
-    background: linear-gradient(135deg, #fff9df, #f0f6d3 55%, #fffde9);
+    background: linear-gradient(135deg, #ecf5dd, #dceecb 55%, #f1f7e7);
 }
 
 .section-heading {
@@ -450,7 +450,7 @@ a {
 }
 
 .gallery {
-    background: linear-gradient(135deg, #eaf4c9, #f8fbe9 55%, #e2efb9);
+    background: linear-gradient(135deg, #d5eac1, #e7f2d9 55%, #cde5b7);
 }
 
 .photo-carousel {
